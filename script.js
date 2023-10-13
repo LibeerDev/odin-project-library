@@ -50,6 +50,18 @@ form.addEventListener('submit', function (e) {
 
     myLibrary.push(newBook);
 
-    console.log(myLibrary);
-    
+    // Reference book tags 
+    const book = document.getElementById('book');
+    const bookContainer = document.getElementById('book-container');
+    const displayAuthor = document.getElementById('displayAuthor');
+    const displayTitle = document.getElementById('displayTitle');
+    const displayNumOfPages = document.getElementById('displayNumOfPages');
+    const displayWasRead = document.getElementById('displayWasRead');
+
+    myLibrary.forEach((object) => {
+        bookContainer.createElement(book);
+        book.displayAuthor = object.author;
+        book.displayTitle = object.title;
+        book.displayAuthor = object.author;
+    })
 })

@@ -45,19 +45,20 @@
                 </form>
             </fieldset>
         </div>
-        <div class="book-container">
-            <div class="book">
-                <div class="left-side">
-                    <p class="author">Cal Newport</p>
-                    <p class="title">Deep Work</p>
-                    <p class="num-of-pages">190 <span> pages</span></p>
-                    <label for="Read?">Read?</label>
-                    <input type="checkbox" name="Read?" id="wasRead">
-                </div>
-                <div class="right-side">
-                    <img src="" alt="">
-                </div>
+        <div id="book-container" class="book-container">
+            <div id="book" class="book">
+                    <div style="font-weight: 600;" class="book-left">
+                        <p id="displayAuthor" class="author">Cal Newport</p>
+                        <p id="displayTitle" style="font-style: italic;" class="title">Deep Work</p>
+                        <p id="displayNumOfPages"class="num-of-pages">190 <span> pages</span></p>
+                        <div>
+                            <label for="Read?">Read?</label>
+                            <input id="displayWasRead" type="checkbox" name="Read?" id="wasRead">
+                        </div>
+                    </div>
+                    <div class="book-right center"><img src="imgs/deepwork.jpg" alt=""></div>
             </div>
+            
         </div>
     </main>
     <script src="script.js" defer></script>
