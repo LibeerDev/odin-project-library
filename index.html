@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="cssreset.css">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Library</title>
+</head>
+
+<body>
+    <main class="main">
+        <button type="button" onclick="toggleFormVisibility()" class="new-book">
+            Add a new book
+        </button>
+        <div class="form-container" id="formContainer">
+            <fieldset>
+                <legend>Add a new book</legend>
+                <form id="addBookForm">
+                    <div class="wrapper">
+                        <label for="author">Author</label>
+                        <input type="text" min="3" max="50" name="author" id="author">
+                    </div>
+                    <div class="wrapper">
+                        <label for="title">Title</label>
+                        <input type="text" min="3" max="100" name="title" id="title">
+                    </div>
+                    <div class="wrapper">
+                        <label for="number of pages">Number of pages</label>
+                        <input type="number" min="1" max="10000" name="number of pages" id="numOfPages">
+                    </div>
+                    <div class="wrapper was-it-read">
+                        <label for="was it read?">Was it read?</label>
+                        <input type="checkbox" name="was it read?" id="wasRead">
+                    </div>
+                    <div class="wrapper">
+                        <label for="image">Book image</label>
+                        <input type="file" name="book image" id="bookImage" accept="image/*">
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </fieldset>
+        </div>
+        <div class="book-container">
+            <div class="book">
+                <div class="left-side">
+                    <p class="author">Cal Newport</p>
+                    <p class="title">Deep Work</p>
+                    <p class="num-of-pages">190 <span> pages</span></p>
+                    <label for="Read?">Read?</label>
+                    <input type="checkbox" name="Read?" id="wasRead">
+                </div>
+                <div class="right-side">
+                    <img src="" alt="">
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
