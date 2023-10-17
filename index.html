@@ -23,15 +23,15 @@
                 <form id="addBookForm">
                     <div class="wrapper">
                         <label for="author">Author</label>
-                        <input type="text" min="3" max="50" name="author" id="author">
+                        <input required type="text" min="3" max="50" name="author" id="author">
                     </div>
                     <div class="wrapper">
                         <label for="title">Title</label>
-                        <input type="text" min="3" max="100" name="title" id="title">
+                        <input required type="text" min="3" max="100" name="title" id="title">
                     </div>
                     <div class="wrapper">
                         <label for="number of pages">Number of pages</label>
-                        <input type="number" min="1" max="10000" name="number of pages" id="numOfPages">
+                        <input required type="number" min="1" max="10000" name="number of pages" id="numOfPages">
                     </div>
                     <div class="wrapper was-it-read">
                         <label for="was it read?">Was it read?</label>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="wrapper">
                         <label for="image">Book image</label>
-                        <input type="file" name="book image" id="bookImage" accept="image/*">
+                        <input required type="file" name="book image" id="bookImage" accept="image/*">
                     </div>
                     <button type="submit">Submit</button>
                 </form>
@@ -47,19 +47,20 @@
         </div>
         <div id="book-container" class="book-container">
             <div id="book" class="book">
-                    <div style="font-weight: 600;" class="book-left">
-                        <p id="displayAuthor" class="author">Cal Newport</p>
-                        <p id="displayTitle" style="font-style: italic;" class="title">Deep Work</p>
-                        <p id="displayNumOfPages"class="num-of-pages">190 <span> pages</span></p>
-                        <div>
-                            <label for="Read?">Read?</label>
-                            <input id="displayWasRead" type="checkbox" name="Read?" id="wasRead">
-                        </div>
+                <div style="font-weight: 600;" class="book-left">
+                    <p class="author">Cal Newport</p>
+                    <p style="font-style: italic;" class="title">Deep Work</p>
+                    <p class="num-of-pages">190 <span> pages</span></p>
+                    <div>
+                        <label for="Read?">Read?</label>
+                        <input type="checkbox" name="Read?" id="wasRead">
                     </div>
-                    <div class="book-right center"><img src="imgs/deepwork.jpg" alt=""></div>
+                </div>
+                <div class="book-right center">
+                    <img src="imgs/deepwork.jpg" alt="">
+                </div>
+                <button class="removeBookButton" onclick="removeBook()">Remove</button>
             </div>
-            
-        </div>
     </main>
     <script src="script.js" defer></script>
 </body>
