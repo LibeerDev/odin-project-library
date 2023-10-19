@@ -1,6 +1,3 @@
-    // create index for the book
-    let bookIndex = 0;
-
 // BUTTON HANDLING
 
 const formContainer = document.getElementById("formContainer");
@@ -11,7 +8,7 @@ function toggleFormVisibility() {
 
 
 // BOOK OBJECT PROTOTYPE
-const myLibrary = [];
+let myLibrary = [];
 
 function Book() {
     this.author = author
@@ -19,7 +16,6 @@ function Book() {
     this.numOfPages = numOfPages
     this.wasRead = wasRead
     this.image = image
-    this.index = index
 }
 
 
@@ -36,7 +32,6 @@ form.addEventListener('submit', function (e) {
     const newBookNumOfPages = document.getElementById('numOfPages').value;
     const newBookWasRead = document.getElementById('wasRead').checked;
     const newBookImage = document.getElementById('bookImage').files[0];
-    const newBookIndex = index;
 
     // Add book to Library
 
@@ -45,52 +40,51 @@ form.addEventListener('submit', function (e) {
 
         const newBook = Object.create(Book);
         newBook.author = newBookAuthor;
-        newBook.title = newBookAuthor;
+        newBook.title = newBookTitle;
         newBook.numOfPages = newBookNumOfPages;
         newBook.wasRead = newBookWasRead;
-
         newBook.image = newBookImage;
-
+        
         myLibrary.push(newBook);
+
         // $ form.reset();
     }
 
     addBookToLibrary();
+    updateLibrary();
 
-    // Display the book
-    const book = document.getElementById('book');
+    })
+
+function updateLibrary() {
     const bookContainer = document.getElementById('book-container');
+    bookContainer.innerHTML = '';
 
-    const bookCard = document.createElement('div');
-    bookCard.classList.add('book');
-    bookCard.setAttribute('id', 'book');
-    bookCard.setAttribute('bookindex', `${bookIndex}`);
-    // increment the index
-    bookIndex += 1;
-
-    bookCard.innerHTML = `
-                <div style="font-weight: 600;" class="book-left">
-                <p class="author">${newBookAuthor}</p>
-                <p style="font-style: italic;" class="title">${newBookTitle}</p>
-                <p class="num-of-pages">${newBookNumOfPages} <span> pages</span></p>
-                <div>
-                    <label for="Read?">Read?</label>
-                    <input type="checkbox" name="wasRead" id="wasRead" ${newBookWasRead ? 'checked' : ''}>
+    myLibrary.forEach((book, index) => {
+        // Display the book
+        const bookCard = document.createElement('div');
+        bookCard.classList.add('book');
+        bookCard.setAttribute('id', 'book');
+    
+        bookCard.innerHTML = `
+                    <div style="font-weight: 600;" class="book-left">
+                    <p class="author">${book.author}</p>
+                    <p style="font-style: italic;" class="title">${book.title}</p>
+                    <p class="num-of-pages">${book.numOfPages} <span> pages</span></p>
+                    <div>
+                        <label for="Read?">Read?</label>
+                        <input type="checkbox" name="wasRead" id="wasRead" ${book.wasRead ? 'checked' : ''}>
+                    </div>
                 </div>
-            </div>
-            <div class="book-right center">
-                <img src="${URL.createObjectURL(newBookImage)}" alt="">
-            </div>
-            <button class="removeBookButton" onclick="removeButton(this.parentElement, this.parentElement.getAttribute('bookIndex'))">Remove</button>
-        `;
-    bookContainer.appendChild(bookCard);
-});
+                <div class="book-right center">
+                    <img src="${URL.createObjectURL(book.image)}" alt="">
+                </div>
+                <button data="${index}" class="removeBookButton" onclick="removeBook(${index})">Remove</button>
+            `;
+        bookContainer.appendChild(bookCard);
+    });
+}
 
-function removeButton(parentElement, index) {
-    // remove the book from the Library object
-    
-    
-    // remove the book from the DOM
-    parentElement.remove();
-    console.log(myLibrary);
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    updateLibrary();
 }
