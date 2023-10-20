@@ -1,3 +1,15 @@
+// Load the library from localStorage when the page loads
+window.addEventListener('load', () => {
+    const savedLibrary = localStorage.getItem("myLibrary");
+    if (savedLibrary) {
+        myLibrary = JSON.parse(savedLibrary);
+        renderLibrary();
+    }
+    else {
+        let myLibrary = [];
+    }
+});
+
 // BUTTON HANDLING
 
 const formContainer = document.getElementById("formContainer");
@@ -6,19 +18,13 @@ function toggleFormVisibility() {
     formContainer.classList.toggle("toggle-invis");
 }
 
-
-// BOOK OBJECT PROTOTYPE
-let myLibrary = [];
-
-function Book() {
+function Book(author, title, numOfPages, wasRead, image) {
     this.author = author
     this.title = title
     this.numOfPages = numOfPages
     this.wasRead = wasRead
     this.image = image
 }
-
-
 
 // Handling submit button functionability
 
@@ -46,16 +52,21 @@ form.addEventListener('submit', function (e) {
         newBook.image = newBookImage;
         
         myLibrary.push(newBook);
-
+        // load the library from the json
         // $ form.reset();
     }
 
     addBookToLibrary();
-    updateLibrary();
+    renderLibrary();
+    saveLibrary()
 
     })
 
-function updateLibrary() {
+function saveLibrary() {
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+
+function renderLibrary() {
     const bookContainer = document.getElementById('book-container');
     bookContainer.innerHTML = '';
 
@@ -65,6 +76,7 @@ function updateLibrary() {
         bookCard.classList.add('book');
         bookCard.setAttribute('id', 'book');
     
+        console.log(typeof(book.image));
         bookCard.innerHTML = `
                     <div style="font-weight: 600;" class="book-left">
                     <p class="author">${book.author}</p>
@@ -76,7 +88,7 @@ function updateLibrary() {
                     </div>
                 </div>
                 <div class="book-right center">
-                    <img src="${URL.createObjectURL(book.image)}" alt="">
+                    <img src="${URL.createObjectURL(new Blob([book.image]))}" alt="">
                 </div>
                 <button data="${index}" class="removeBookButton" onclick="removeBook(${index})">Remove</button>
             `;
@@ -86,5 +98,6 @@ function updateLibrary() {
 
 function removeBook(index) {
     myLibrary.splice(index, 1);
-    updateLibrary();
+    renderLibrary();
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
