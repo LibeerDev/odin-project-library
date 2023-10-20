@@ -26,9 +26,22 @@ function Book(author, title, numOfPages, wasRead, image) {
     this.image = image
 }
 
+const bookImageInput = document.querySelector('#bookImage')
+
+bookImageInput.addEventListener('change', function () {
+    const reader = new FileReader();
+
+    reader.addEventListener('load', () => {
+        localStorage.setItem('bookImage', reader.result);
+    });
+    reader.readAsDataURL(this.files[0]);
+});
+
+
 // Handling submit button functionability
 
 const form = document.getElementById("addBookForm");
+
 form.addEventListener('submit', function (e) {
 
     e.preventDefault();
@@ -37,7 +50,7 @@ form.addEventListener('submit', function (e) {
     const newBookTitle = document.getElementById('title').value;
     const newBookNumOfPages = document.getElementById('numOfPages').value;
     const newBookWasRead = document.getElementById('wasRead').checked;
-    const newBookImage = document.getElementById('bookImage').files[0];
+    const newBookImage = localStorage.getItem('bookImage');
 
     // Add book to Library
 
@@ -62,6 +75,7 @@ form.addEventListener('submit', function (e) {
 
     })
 
+
 function saveLibrary() {
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
@@ -71,12 +85,12 @@ function renderLibrary() {
     bookContainer.innerHTML = '';
 
     myLibrary.forEach((book, index) => {
+
         // Display the book
         const bookCard = document.createElement('div');
         bookCard.classList.add('book');
         bookCard.setAttribute('id', 'book');
     
-        console.log(typeof(book.image));
         bookCard.innerHTML = `
                     <div style="font-weight: 600;" class="book-left">
                     <p class="author">${book.author}</p>
@@ -88,7 +102,7 @@ function renderLibrary() {
                     </div>
                 </div>
                 <div class="book-right center">
-                    <img src="${URL.createObjectURL(new Blob([book.image]))}" alt="">
+                    <img src="${book.image}" alt="">
                 </div>
                 <button data="${index}" class="removeBookButton" onclick="removeBook(${index})">Remove</button>
             `;
@@ -101,3 +115,4 @@ function removeBook(index) {
     renderLibrary();
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
+
