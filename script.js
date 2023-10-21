@@ -5,10 +5,11 @@ window.addEventListener('load', () => {
         myLibrary = JSON.parse(savedLibrary);
         renderLibrary();
     }
-    else {
-        let myLibrary = [];
-    }
 });
+
+if (myLibrary === undefined) {
+    let myLibrary = [];
+}
 
 // BUTTON HANDLING
 
