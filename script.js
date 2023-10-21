@@ -1,15 +1,4 @@
-// Load the library from localStorage when the page loads
-window.addEventListener('load', () => {
-    const savedLibrary = localStorage.getItem("myLibrary");
-    if (savedLibrary) {
-        myLibrary = JSON.parse(savedLibrary);
-        renderLibrary();
-    }
-});
-
-if (myLibrary === undefined) {
-    let myLibrary = [];
-}
+let myLibrary = []; // Initialize an empty array
 
 // BUTTON HANDLING
 
