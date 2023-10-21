@@ -30,7 +30,7 @@
 
 .new-book-button {
     z-index: 1;
-    background-image: url(imgs/form.jpg);
+    background-color: rgb(23, 23, 48);
     background-size: cover;
     border: none;
     color: white;
@@ -42,7 +42,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(imgs/form.jpg);
+    background-image: url(imgs/library_bg.png);
     background-position: center;
     background-size: cover;
 }
@@ -117,10 +117,19 @@ button[type="submit"]:hover {
     height: 300px;
     background-image: url(imgs/book_material.jpg);
     background-size: cover;
+    color: rgb(105, 30, 0);
     border: 1px solid black;
     grid-template-columns: 1fr 1fr;
     border-radius: 5px;
     margin: 20px;
+}
+
+.title {
+    font-size: 1.1rem;
+}
+
+.num-of-pages {
+    font-size: 0.7rem;
 }
 
 .book-left {
@@ -130,6 +139,8 @@ button[type="submit"]:hover {
     gap: 15px;
     align-items: center;
     text-align: center;
+    opacity: 70%;
+    border-radius: 10px;
 }
 
 
