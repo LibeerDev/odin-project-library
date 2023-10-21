@@ -56,7 +56,7 @@ form.addEventListener('submit', function (e) {
         
         myLibrary.push(newBook);
         // load the library from the json
-        // $ form.reset();
+        form.reset();
     }
 
     addBookToLibrary();
