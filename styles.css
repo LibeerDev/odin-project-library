@@ -30,7 +30,7 @@
 
 .new-book-button {
     z-index: 1;
-    background-image: url(imgs/book_material.jpg);
+    background-image: url(imgs/form.jpg);
     background-size: cover;
     border: none;
     color: white;
@@ -42,7 +42,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(imgs/book_material.jpg);
+    background-image: url(imgs/form.jpg);
+    background-position: center;
     background-size: cover;
 }
 
@@ -53,12 +54,17 @@
 }
 
 .form-container form input {
-    border-radius: 4px;
+    border-radius: 10px;
     border: none;
 }
 
 .form-container form input:focus {
     outline-color: rgb(168, 0, 0);
+}
+
+#submit-button {
+    border-radius: 10px;
+    border: none    ;
 }
 
 .wrapper {
