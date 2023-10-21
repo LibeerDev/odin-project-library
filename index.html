@@ -14,10 +14,10 @@
 
 <body>
     <main class="main">
-        <button type="button" onclick="toggleFormVisibility()" class="new-book">
+        <button type="button" onclick="toggleFormVisibility()" class="new-book-button" id="addBookButton">
             Add a new book
         </button>
-        <div class="form-container" id="formContainer">
+        <div class="form-container hidden" id="formContainer">
             <fieldset>
                 <legend>Add a new book</legend>
                 <form id="addBookForm">
@@ -41,7 +41,7 @@
                         <label for="image">Book image</label>
                         <input required type="file" name="book image" id="bookImage" accept="image/*">
                     </div>
-                    <button type="submit">Submit</button>
+                    <button id="submit-button" type="submit">Submit</button>
                 </form>
             </fieldset>
         </div>

@@ -15,7 +15,7 @@ window.addEventListener('load', () => {
 const formContainer = document.getElementById("formContainer");
 
 function toggleFormVisibility() {
-    formContainer.classList.toggle("toggle-invis");
+    formContainer.classList.toggle("hidden");
 }
 
 function Book(author, title, numOfPages, wasRead, image) {
@@ -98,7 +98,7 @@ function renderLibrary() {
                     <p class="num-of-pages">${book.numOfPages} <span> pages</span></p>
                     <div>
                         <label for="Read?">Read?</label>
-                        <input type="checkbox" name="wasRead" id="wasRead" ${book.wasRead ? 'checked' : ''}>
+                        <input type="checkbox" name="wasRead" id="wasRead" ${book.wasRead ? 'checked' : ''} onchange="updateReadStatus(${index})">
                     </div>
                 </div>
                 <div class="book-right center">
@@ -107,7 +107,14 @@ function renderLibrary() {
                 <button data="${index}" class="removeBookButton" onclick="removeBook(${index})">Remove</button>
             `;
         bookContainer.appendChild(bookCard);
+
     });
+}
+
+// Function to update the 'wasRead' status in localStorage
+function updateReadStatus(index) {
+    myLibrary[index].wasRead = !myLibrary[index].wasRead; // Toggle the status
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary)); // Update localStorage
 }
 
 function removeBook(index) {
@@ -115,4 +122,3 @@ function removeBook(index) {
     renderLibrary();
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
-
