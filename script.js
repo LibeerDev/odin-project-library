@@ -1,4 +1,14 @@
-let myLibrary = []; // Initialize an empty array
+let myLibrary = [];
+
+// Load the library from localStorage when the page loads
+window.addEventListener('load', () => {
+    const savedLibrary = localStorage.getItem("myLibrary");
+    if (savedLibrary) {
+        myLibrary = JSON.parse(savedLibrary);
+        renderLibrary();
+    }
+});
+
 
 // BUTTON HANDLING
 
@@ -56,7 +66,7 @@ form.addEventListener('submit', function (e) {
         
         myLibrary.push(newBook);
         // load the library from the json
-        form.reset();
+        // $ form.reset();
     }
 
     addBookToLibrary();
