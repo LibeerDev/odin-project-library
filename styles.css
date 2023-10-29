@@ -214,6 +214,7 @@ button[type="submit"]:hover {
 
 #author {
     width: 300px;
+    z-index: 9999;
 }
 
 #submit-button {
